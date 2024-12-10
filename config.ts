@@ -5,8 +5,8 @@ export const config: Config = {
   themeColor: "#5789f6",
   logoURL: "/images/logo.png",
   site: {
-    url: "https://www.skvad.eu/",
-    title: "SKVAD Community",
+    url: "https://www.bastiondayz.com/",
+    title: "Bastion Community",
     twitter: {
       site: "@site",
       creator: "@creator",
@@ -14,15 +14,15 @@ export const config: Config = {
       images: [
         {
           url: "/images/marketing/banner.png",
-          alt: "Marketing Banner for SKVAD Community",
+          alt: "Marketing Banner for Bastion Community",
         },
       ],
     },
   },
   pages: {
     home: {
-      title: "Home | SKVAD Community",
-      description: "Welcome to the SKVAD Community! We are a DayZ community that is dedicated to providing the best experience for our players. Join us today!",
+      title: "Home | Bastion Community",
+      description: "Welcome to the Bastion Community! We are a DayZ community that is dedicated to providing the best experience for our players. Join us today!",
       sections: {
         network: {
           title: "Server Network",
@@ -66,8 +66,8 @@ export const config: Config = {
           title: "Contact Us",
           description: "If you have any questions or concerns, please don't hesitate to contact us through the following channels.",
           links: {
-            'Discord': "https://discord.gg/skvad",
-            'Email': "mailto:info@skvad.eu",
+            'Discord': "https://discord.gg/bastiondayz",
+            'Email': "mailto:info@Bastion.eu",
           },
         },
       },
@@ -85,30 +85,16 @@ export const config: Config = {
     },
     cta: {
       label: "Join us today!",
-      href: "https://discord.gg/mirasaki",
+      href: "https://discord.gg/bastiondayz",
     },
   },
   servers: [
     {
-      name: 'SKVAD EU1',
-      ipv4: '193.25.252.92',
+      name: 'Bastion DEV',
+      ipv4: '193.25.252.99',
       gamePort: 2302,
       steamQueryPort: 27016,
-      cftoolsApiId: '7732f152-3b6b-4da5-9356-b43ebfef2012',
-    },
-    {
-      name: 'SKVAD EU2',
-      ipv4: '193.25.252.24',
-      gamePort: 2302,
-      steamQueryPort: 27016,
-      cftoolsApiId: '40dfcdf1-2e38-4a86-8b36-f02e4c868bf5',
-    },
-    {
-      name: 'SKVAD EU3',
-      ipv4: '193.25.252.24',
-      gamePort: 2402,
-      steamQueryPort: 27017,
-      cftoolsApiId: '16c3c8d1-9e15-4729-a541-8a578288e43d',
+      cftoolsApiId: 'c5738674-bac8-4e04-94e7-bb121198fa2c',
     },
   ],
   cftools: {
@@ -121,11 +107,11 @@ export const config: Config = {
     },
   },
   footer: {
-    trademarkNotice: "The DayZ logo is a registered trademark of Bohemia Interactive a.s. SKVAD is not affiliated with Bohemia Interactive a.s. or DayZ. All other trademarks are the property of their respective owners.",
-    brandingName: "SKVAD Community",
+    trademarkNotice: "The DayZ logo is a registered trademark of Bohemia Interactive a.s. Bastion is not affiliated with Bohemia Interactive a.s. or DayZ. All other trademarks are the property of their respective owners.",
+    brandingName: "Bastion Community",
     brandingURL: '/',
     initialCopyrightYear: 2021,
-    copyrightBrandName: "SKVAD",
+    copyrightBrandName: "Bastion",
     copyrightBrandUrl: '/',
     links: [
       {
