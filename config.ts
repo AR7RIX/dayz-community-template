@@ -6,7 +6,7 @@ export const config: Config = {
   logoURL: "/images/logo.png",
   site: {
     url: "https://www.bastiondayz.com/",
-    title: "Bastion Community",
+    title: "Bastion DayZ",
     twitter: {
       site: "@site",
       creator: "@creator",
@@ -14,15 +14,15 @@ export const config: Config = {
       images: [
         {
           url: "/images/marketing/banner.png",
-          alt: "Marketing Banner for Bastion Community",
+          alt: "Marketing Banner for Bastion DayZ",
         },
       ],
     },
   },
   pages: {
     home: {
-      title: "Home | Bastion Community",
-      description: "Welcome to the Bastion Community! We are a DayZ community that is dedicated to providing the best experience for our players. Join us today!",
+      title: "Home | Bastion DayZ",
+      description: "Welcome to the Bastion DayZ! We are a DayZ community that is dedicated to providing the best experience for our players. Join us today!",
       sections: {
         network: {
           title: "Server Network",
@@ -108,13 +108,13 @@ export const config: Config = {
   },
   footer: {
     trademarkNotice: "The DayZ logo is a registered trademark of Bohemia Interactive a.s. Bastion is not affiliated with Bohemia Interactive a.s. or DayZ. All other trademarks are the property of their respective owners.",
-    brandingName: "Bastion Community",
+    brandingName: "Bastion DayZ",
     brandingURL: '/',
-    initialCopyrightYear: 2021,
+    initialCopyrightYear: 2024,
     copyrightBrandName: "Bastion",
     copyrightBrandUrl: '/',
     links: [
-      {
+/*       {
         url: '#',
         label: 'About',
       },
@@ -141,7 +141,7 @@ export const config: Config = {
       {
         url: '#',
         label: 'Contact',
-      },
+      }, */
     ],
   },
 };
