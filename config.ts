@@ -7,7 +7,7 @@ export const config: Config = {
   site: {
     url: "https://www.bastiondayz.com/",
     title: "Bastion DayZ",
-    twitter: {
+/*     twitter: {
       site: "@site",
       creator: "@creator",
       card: "summary_large_image",
@@ -17,7 +17,7 @@ export const config: Config = {
           alt: "Marketing Banner for Bastion DayZ",
         },
       ],
-    },
+    }, */
   },
   pages: {
     home: {
@@ -36,7 +36,7 @@ export const config: Config = {
               title: "Events",
               description: "We host regular events and competitions for our players to participate in. These events are a great way to meet new people and have fun in the game.",
               image: {
-                url: "/images/about/events.jpg",
+                url: "/images/about/events.png",
                 alt: "Events Image",
               },
             },
@@ -44,7 +44,7 @@ export const config: Config = {
               title: "Community",
               description: "We believe that a strong community is the key to a successful server. We work hard to foster a positive and inclusive community for all players.",
               image: {
-                url: "/images/about/community.jpg",
+                url: "/images/about/community.png",
                 alt: "Community Image",
               },
             },
