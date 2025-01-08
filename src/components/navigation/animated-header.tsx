@@ -20,7 +20,7 @@ export const defaultNavigation = {
     { label: "About", href: "#about", enabled: true },
     { label: "Servers", href: "#servers", enabled: true },
     { label: "Leaderboard", href: "#leaderboard", enabled: config.cftools.leaderboard.enabled },
-    { label: "Contact", href: "#contact", enabled: true },
+    { label: "Store", href: "https://store.bastiondayz.com/", enabled: true },
   ],
 } satisfies { items: NavItem[] };
 
