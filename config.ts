@@ -62,14 +62,14 @@ export const config: Config = {
           title: "Leaderboard",
           description: "Check out the top players on our servers and see how you compare. Can you make it to the top of the leaderboard?",
         },
-/*         contact: {
+        contact: {
           title: "Contact Us",
           description: "If you have any questions or concerns, please don't hesitate to contact us through the following channels.",
           links: {
             'Discord': "https://discord.gg/bastiondayz",
             'Email': "mailto:info@Bastion.eu",
           },
-        }, */
+        },
       },
     },
   },
