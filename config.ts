@@ -66,8 +66,7 @@ export const config: Config = {
           title: "Contact Us",
           description: "If you have any questions or concerns, please don't hesitate to contact us through the following channels.",
           links: {
-            'Discord': "https://discord.gg/bastiondayz",
-            'Email': "mailto:info@Bastion.eu",
+            'Discord': "https://discord.gg/bastiondayz"
           },
         },
       },
@@ -90,11 +89,18 @@ export const config: Config = {
   },
   servers: [
     {
-      name: 'Bastion DEV',
-      ipv4: '193.25.252.99',
+      name: 'Bastion US1',
+      ipv4: '104.129.132.66',
       gamePort: 2302,
       steamQueryPort: 27016,
       cftoolsApiId: 'c5738674-bac8-4e04-94e7-bb121198fa2c',
+    },
+    {
+      name: 'Bastion EU1',
+      ipv4: '64.40.9.198',
+      gamePort: 2302,
+      steamQueryPort: 27016,
+      cftoolsApiId: '487c5364-157b-4824-ac55-21b025f7cec5',
     },
   ],
   cftools: {
