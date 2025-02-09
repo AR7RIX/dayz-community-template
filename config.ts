@@ -93,6 +93,13 @@ export const config: Config = {
       ipv4: '104.129.132.66',
       gamePort: 2302,
       steamQueryPort: 27016,
+      cftoolsApiId: '06bbd7eb-9e94-4ebf-8646-b90a344806db',
+    },
+    {
+      name: 'Bastion US1',
+      ipv4: '104.129.132.66',
+      gamePort: 2302,
+      steamQueryPort: 27016,
       cftoolsApiId: 'c5738674-bac8-4e04-94e7-bb121198fa2c',
     },
     {
