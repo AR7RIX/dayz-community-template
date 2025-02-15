@@ -89,6 +89,13 @@ export const config: Config = {
   },
   servers: [
     {
+      name: 'Bastion US1',
+      ipv4: '216.39.240.50',
+      gamePort: 2302,
+      steamQueryPort: 27016,
+      cftoolsApiId: '06bbd7eb-9e94-4ebf-8646-b90a344806db',
+    },
+    {
       name: 'Bastion US2',
       ipv4: '104.129.132.66',
       gamePort: 2302,
@@ -109,7 +116,7 @@ export const config: Config = {
       defaultSortValue: 'kills',
       allowedSortValues: ['kills', 'deaths', 'kdratio', 'longest_kill', 'longest_shot', 'playtime', 'suicides'],
       blacklistedCFToolsIds: [],
-      showAmount: 100,
+      showAmount: 20,
     },
   },
   footer: {
