@@ -116,7 +116,7 @@ export const config: Config = {
       defaultSortValue: 'kills',
       allowedSortValues: ['kills', 'deaths', 'kdratio', 'longest_kill', 'longest_shot', 'playtime', 'suicides'],
       blacklistedCFToolsIds: [],
-      showAmount: 20,
+      showAmount: 10,
     },
   },
   footer: {
