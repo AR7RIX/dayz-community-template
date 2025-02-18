@@ -63,14 +63,14 @@ export const cftoolsLeaderboard = async (
   stat: LeaderboardSortValues,
   order: 1 | -1,
   limit: number,
-) => {
+): Promise<{ leaderboard?: LeaderboardEntry[], error?: string }> => {
   try {
     let data = await fetch(
-      `${ CFTOOLS_API_URL }/server/${ CFTOOLS_SERVER_API_ID }/leaderboard?stat=${ stat }&order=${ order }&limit=${ limit }`,
+      `${CFTOOLS_API_URL}/server/${CFTOOLS_SERVER_API_ID}/leaderboard?stat=${stat}&order=${order}&limit=${limit}`,
       {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${ await cftoolsAPIToken() }`,
+          Authorization: `Bearer ${await cftoolsAPIToken()}`,
         },
         cache: 'default',
       }
@@ -86,17 +86,18 @@ export const cftoolsLeaderboard = async (
         return await cftoolsLeaderboard(CFTOOLS_SERVER_API_ID, stat, order, limit); // Spróbuj ponownie
       }
 
-      throw new Error(errorResponse.error || "Unknown error");
+      return { error: errorResponse.error || "Unknown API error" };
     }
 
     let responseJson = await data.json();
-    return responseJson;
+    return { leaderboard: responseJson.leaderboard || [] };
   }
   catch (err) {
     console.error('Error encountered while fetching CFTools leaderboard', err);
     return { error: `${err}` };
   }
 };
+
 
 
 export const leaderboardCache = [];
