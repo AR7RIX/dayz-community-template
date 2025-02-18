@@ -29,24 +29,47 @@ const fetchAPIToken = async () => {
         'application_id': CFTOOLS_API_APPLICATION_ID,
         secret: CFTOOLS_API_SECRET,
       }),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': APPLICATION_JSON },
     }
   );
   token = (await token.json()).token;
-  return token;
+  return typeof token === 'string'
+    ? token
+    : Promise.reject('Failed to get CFTools API token');
 };
 
-let CFTOOLS_API_TOKEN: string;
-const tokenExpirationMS = MS_IN_ONE_HOUR * 23;
-export const cftoolsAPIToken = async () => {
+let CFTOOLS_API_TOKEN;
+const tokenExpirationMS = 1000 * 60 * 60 * 23;
+module.exports.fetchAPIToken = async () => {
   if (!CFTOOLS_API_TOKEN) {
     CFTOOLS_API_TOKEN = await fetchAPIToken();
+    // Update our token every 23 hours
     setInterval(async () => {
       CFTOOLS_API_TOKEN = await fetchAPIToken();
     }, tokenExpirationMS);
   }
   return CFTOOLS_API_TOKEN;
 };
+
+const getGrants = async () => {
+  let data;
+  try {
+    data = await fetch(
+      'https://data.cftools.cloud/v1/@app/grants',
+      {
+        method: 'GET',
+        headers: { Authorization: `Bearer ${await fetchAPIToken()}` }
+      }
+    )
+    data = (await data.json());
+    return data;
+  } catch (err) {
+    logger.syserr('Error encounter fetching app grants');
+    logger.printErr(err);
+    return err;
+  }
+};
+module.exports.getGrants = getGrants;
 
 export const cftoolsLeaderboard = async (
   CFTOOLS_SERVER_API_ID: string,
