@@ -76,6 +76,9 @@ export const cftoolsLeaderboard = async (
   }
 };
 
+console.log("Using token:", CFTOOLS_API_TOKEN);
+
+
 export const leaderboardCache = [];
 
 export type LeaderboardEntry = {
