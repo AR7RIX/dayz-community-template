@@ -47,7 +47,6 @@ export const cftoolsAPIToken = async () => {
       CFTOOLS_API_TOKEN = await fetchAPIToken();
     }, tokenExpirationMS);
   }
-  console.log("Using token:", CFTOOLS_API_TOKEN);
   return CFTOOLS_API_TOKEN;
 };
 
@@ -59,7 +58,7 @@ export const cftoolsLeaderboard = async (
 ) => {
   try {
     let data = await fetch(
-      `${ CFTOOLS_API_URL }/server/${ CFTOOLS_SERVER_API_ID }/leaderboard?stat=kills&order=1&limit=10`,
+      `${ CFTOOLS_API_URL }/server/${ CFTOOLS_SERVER_API_ID }/leaderboard?stat=${ stat }&order=${ order }&limit=${ limit }`,
       {
         method: 'GET',
         headers: {
