@@ -29,13 +29,11 @@ const fetchAPIToken = async () => {
         'application_id': CFTOOLS_API_APPLICATION_ID,
         secret: CFTOOLS_API_SECRET,
       }),
-      headers: { 'Content-Type': APPLICATION_JSON },
+      headers: { 'Content-Type': 'application/json' }
     }
   );
   token = (await token.json()).token;
-  return typeof token === 'string'
-    ? token
-    : Promise.reject('Failed to get CFTools API token');
+  return token;
 };
 
 let CFTOOLS_API_TOKEN: string;
