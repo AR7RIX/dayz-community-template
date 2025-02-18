@@ -47,6 +47,7 @@ export const cftoolsAPIToken = async () => {
       CFTOOLS_API_TOKEN = await fetchAPIToken();
     }, tokenExpirationMS);
   }
+  console.log("Using token:", CFTOOLS_API_TOKEN);
   return CFTOOLS_API_TOKEN;
 };
 
@@ -75,9 +76,6 @@ export const cftoolsLeaderboard = async (
     return { error: `${err}` };
   }
 };
-
-console.log("Using token:", CFTOOLS_API_TOKEN);
-
 
 export const leaderboardCache = [];
 
