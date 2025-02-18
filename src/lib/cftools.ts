@@ -32,7 +32,13 @@ const fetchAPIToken = async () => {
       headers: { 'Content-Type': APPLICATION_JSON },
     }
   );
-  token = (await token.json()).token;
+    let responseJson = await token.json();
+    console.log("Auth API Response:", responseJson);
+    
+    token = responseJson.token;
+    if (!token) {
+      throw new Error(`Failed to get a valid CFTools API token: ${JSON.stringify(responseJson)}`);
+    }
   return typeof token === 'string'
     ? token
     : Promise.reject('Failed to get CFTools API token');
@@ -42,8 +48,10 @@ let CFTOOLS_API_TOKEN: string;
 const tokenExpirationMS = MS_IN_ONE_HOUR * 23;
 export const cftoolsAPIToken = async () => {
   if (!CFTOOLS_API_TOKEN) {
+    console.log("Fetching new API token...");
     CFTOOLS_API_TOKEN = await fetchAPIToken();
     setInterval(async () => {
+      console.log("Refreshing API token...");
       CFTOOLS_API_TOKEN = await fetchAPIToken();
     }, tokenExpirationMS);
   }
@@ -67,14 +75,29 @@ export const cftoolsLeaderboard = async (
         cache: 'default',
       }
     );
-    data &&= await data.json();
-    return data;
+
+    if (!data.ok) {
+      let errorResponse = await data.json();
+      console.error("Leaderboard API Error:", errorResponse);
+
+      if (errorResponse.error === "bad-token") {
+        console.warn("Token invalid, fetching a new one...");
+        CFTOOLS_API_TOKEN = await fetchAPIToken();  // Pobierz nowy token
+        return await cftoolsLeaderboard(CFTOOLS_SERVER_API_ID, stat, order, limit); // Spróbuj ponownie
+      }
+
+      throw new Error(errorResponse.error || "Unknown error");
+    }
+
+    let responseJson = await data.json();
+    return responseJson;
   }
   catch (err) {
     console.error('Error encountered while fetching CFTools leaderboard', err);
     return { error: `${err}` };
   }
 };
+
 
 export const leaderboardCache = [];
 
