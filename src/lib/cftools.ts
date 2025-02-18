@@ -103,7 +103,10 @@ export const getServerLeaderboards = async (
   order: 1 | -1 = -1,
 ) => {
   const cacheKey = `${ sortBy }-${ order }`;
-  if (cacheKey in lbCache) return lbCache[cacheKey];
+  if (cacheKey in lbCache) {
+    console.log("Leaderboard cache hit, deleting cache:", cacheKey);
+    delete lbCache[cacheKey];  // Wymuszenie ponownego pobrania
+  }  
   const errors: string[] = [];
   const lbArrArr = (await Promise.all(config.servers.filter((e) => typeof e.cftoolsApiId === 'string')
     .map((e) => cftoolsLeaderboard(
