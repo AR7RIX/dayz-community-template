@@ -59,7 +59,7 @@ export const cftoolsLeaderboard = async (
 ) => {
   try {
     let data = await fetch(
-      `${ CFTOOLS_API_URL }/server/${ CFTOOLS_SERVER_API_ID }/leaderboard?stat=$kills&order=$1&limit=$10`,
+      `${ CFTOOLS_API_URL }/server/${ CFTOOLS_SERVER_API_ID }/leaderboard?stat=kills&order=1&limit=10`,
       {
         method: 'GET',
         headers: {
