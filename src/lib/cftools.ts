@@ -64,7 +64,7 @@ export const cftoolsLeaderboard = async (
         headers: {
           Authorization: `Bearer ${ await cftoolsAPIToken() }`,
         },
-        cache: 'default',
+        cache: 'no-store',
       }
     );
     data &&= await data.json();
