@@ -32,13 +32,7 @@ const fetchAPIToken = async () => {
       headers: { 'Content-Type': APPLICATION_JSON },
     }
   );
-    let responseJson = await token.json();
-    console.log("Auth API Response:", responseJson);
-    
-    token = responseJson.token;
-    if (!token) {
-      throw new Error(`Failed to get a valid CFTools API token: ${JSON.stringify(responseJson)}`);
-    }
+  token = (await token.json()).token;
   return typeof token === 'string'
     ? token
     : Promise.reject('Failed to get CFTools API token');
@@ -48,72 +42,39 @@ let CFTOOLS_API_TOKEN: string;
 const tokenExpirationMS = MS_IN_ONE_HOUR * 23;
 export const cftoolsAPIToken = async () => {
   if (!CFTOOLS_API_TOKEN) {
-    console.log("Fetching new API token...");
     CFTOOLS_API_TOKEN = await fetchAPIToken();
     setInterval(async () => {
-      console.log("Refreshing API token...");
       CFTOOLS_API_TOKEN = await fetchAPIToken();
     }, tokenExpirationMS);
   }
   return CFTOOLS_API_TOKEN;
 };
 
-const fetchWithTimeout = async (url: string, options: RequestInit, timeout = 10000) => {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
-  try {
-    const response = await fetch(url, { ...options, signal: controller.signal });
-    clearTimeout(id);
-    return response;
-  } catch (error) {
-    clearTimeout(id);
-    throw new Error(`Request timeout or fetch error: ${error}`);
-  }
-};
-
-
 export const cftoolsLeaderboard = async (
   CFTOOLS_SERVER_API_ID: string,
   stat: LeaderboardSortValues,
   order: 1 | -1,
   limit: number,
-): Promise<{ leaderboard?: LeaderboardEntry[], error?: string }> => {
+) => {
   try {
-    let data = await fetchWithTimeout(
-      `${CFTOOLS_API_URL}/server/${CFTOOLS_SERVER_API_ID}/leaderboard?stat=${stat}&order=${order}&limit=${limit}`,
+    let data = await fetch(
+      `${ CFTOOLS_API_URL }/server/${ CFTOOLS_SERVER_API_ID }/leaderboard?stat=${ stat }&order=${ order }&limit=${ limit }`,
       {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${await cftoolsAPIToken()}`,
+          Authorization: `Bearer ${ await cftoolsAPIToken() }`,
         },
         cache: 'default',
       }
     );
-
-    if (!data.ok) {
-      let errorResponse = await data.json();
-      console.error("Leaderboard API Error:", errorResponse);
-
-      if (errorResponse.error === "bad-token") {
-        console.warn("Token invalid, fetching a new one...");
-        CFTOOLS_API_TOKEN = await fetchAPIToken();  // Pobierz nowy token
-        return await cftoolsLeaderboard(CFTOOLS_SERVER_API_ID, stat, order, limit); // Spróbuj ponownie
-      }
-
-      return { error: errorResponse.error || "Unknown API error" };
-    }
-
-    let responseJson = await data.json();
-    return { leaderboard: responseJson.leaderboard || [] };
+    data &&= await data.json();
+    return data;
   }
   catch (err) {
     console.error('Error encountered while fetching CFTools leaderboard', err);
     return { error: `${err}` };
   }
 };
-
-
-
 
 export const leaderboardCache = [];
 
@@ -142,10 +103,7 @@ export const getServerLeaderboards = async (
   order: 1 | -1 = -1,
 ) => {
   const cacheKey = `${ sortBy }-${ order }`;
-  if (cacheKey in lbCache) {
-    console.log("Leaderboard cache hit, deleting cache:", cacheKey);
-    delete lbCache[cacheKey];  // Wymuszenie ponownego pobrania
-  }  
+  if (cacheKey in lbCache) return lbCache[cacheKey];
   const errors: string[] = [];
   const lbArrArr = (await Promise.all(config.servers.filter((e) => typeof e.cftoolsApiId === 'string')
     .map((e) => cftoolsLeaderboard(
