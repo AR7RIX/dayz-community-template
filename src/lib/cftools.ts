@@ -58,6 +58,20 @@ export const cftoolsAPIToken = async () => {
   return CFTOOLS_API_TOKEN;
 };
 
+const fetchWithTimeout = async (url: string, options: RequestInit, timeout = 10000) => {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+  try {
+    const response = await fetch(url, { ...options, signal: controller.signal });
+    clearTimeout(id);
+    return response;
+  } catch (error) {
+    clearTimeout(id);
+    throw new Error(`Request timeout or fetch error: ${error}`);
+  }
+};
+
+
 export const cftoolsLeaderboard = async (
   CFTOOLS_SERVER_API_ID: string,
   stat: LeaderboardSortValues,
@@ -65,7 +79,7 @@ export const cftoolsLeaderboard = async (
   limit: number,
 ): Promise<{ leaderboard?: LeaderboardEntry[], error?: string }> => {
   try {
-    let data = await fetch(
+    let data = await fetchWithTimeout(
       `${CFTOOLS_API_URL}/server/${CFTOOLS_SERVER_API_ID}/leaderboard?stat=${stat}&order=${order}&limit=${limit}`,
       {
         method: 'GET',
@@ -97,6 +111,7 @@ export const cftoolsLeaderboard = async (
     return { error: `${err}` };
   }
 };
+
 
 
 
