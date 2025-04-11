@@ -109,6 +109,13 @@ export const config: Config = {
       steamQueryPort: 27016,
       cftoolsApiId: '487c5364-157b-4824-ac55-21b025f7cec5',
     },
+    {
+      name: 'Bastion AU1',
+      ipv4: '103.152.197.151',
+      gamePort: 2302,
+      steamQueryPort: 27016,
+      cftoolsApiId: '2e7bfe86-d035-420a-8a1a-7936d780150a',
+    },
   ],
   cftools: {
     leaderboard: {
@@ -116,7 +123,7 @@ export const config: Config = {
       defaultSortValue: 'kills',
       allowedSortValues: ['kills', 'deaths', 'kdratio', 'longest_kill', 'longest_shot', 'playtime'],
       blacklistedCFToolsIds: [],
-      showAmount: 20,
+      showAmount: 1,
     },
   },
   footer: {
