@@ -123,7 +123,7 @@ export const config: Config = {
       defaultSortValue: 'kills',
       allowedSortValues: ['kills', 'deaths', 'kdratio', 'longest_kill', 'longest_shot', 'playtime'],
       blacklistedCFToolsIds: [],
-      showAmount: 1,
+      showAmount: 10,
     },
   },
   footer: {
