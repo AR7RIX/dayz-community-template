@@ -58,10 +58,10 @@ export const config: Config = {
             },
           },
         },
-        leaderboard: {
+/*         leaderboard: {
           title: "Leaderboard",
           description: "Check out the top players on our servers and see how you compare. Can you make it to the top of the leaderboard?",
-        },
+        }, */
         contact: {
           title: "Contact Us",
           description: "If you have any questions or concerns, please don't hesitate to contact us through the following channels.",
@@ -117,7 +117,7 @@ export const config: Config = {
       cftoolsApiId: '2e7bfe86-d035-420a-8a1a-7936d780150a',
     },
   ],
-  cftools: {
+/*   cftools: {
     leaderboard: {
       enabled: true,
       defaultSortValue: 'kills',
@@ -125,7 +125,7 @@ export const config: Config = {
       blacklistedCFToolsIds: [],
       showAmount: 1,
     },
-  },
+  }, */
   footer: {
     trademarkNotice: "The DayZ logo is a registered trademark of Bohemia Interactive a.s. Bastion is not affiliated with Bohemia Interactive a.s. or DayZ. All other trademarks are the property of their respective owners.",
     brandingName: "Bastion DayZ",
