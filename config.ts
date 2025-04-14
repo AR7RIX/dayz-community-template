@@ -117,15 +117,15 @@ export const config: Config = {
       cftoolsApiId: '2e7bfe86-d035-420a-8a1a-7936d780150a',
     },
   ],
-/*   cftools: {
+  cftools: {
     leaderboard: {
-      enabled: true,
+      enabled: false,
       defaultSortValue: 'kills',
       allowedSortValues: ['kills', 'deaths', 'kdratio', 'longest_kill', 'longest_shot', 'playtime'],
       blacklistedCFToolsIds: [],
       showAmount: 1,
     },
-  }, */
+  },
   footer: {
     trademarkNotice: "The DayZ logo is a registered trademark of Bohemia Interactive a.s. Bastion is not affiliated with Bohemia Interactive a.s. or DayZ. All other trademarks are the property of their respective owners.",
     brandingName: "Bastion DayZ",
